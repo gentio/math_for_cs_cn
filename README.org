@@ -1,0 +1,3 @@
+This \latex project can be seen as my learning note[Full chinese translation =_=] from [[http://www.cis.upenn.edu/~jean/gbooks/geomath.html][math for cs]]. The Book is in progressing and the author of this book didn't allow to give the direct pdf download.
+
+The tex tempelate of this book used is come from [[https://github.com/ElegantLaTeX/ElegantBook][ElegantBook]].

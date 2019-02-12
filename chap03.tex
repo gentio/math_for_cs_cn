@@ -1,0 +1,65 @@
+\chapter{向量空间，基，线性映射}
+\section{向量空间}
+%\label{sec:label}
+当$n\ge 1$时，用$R^n$表示n元组$x=(x_1,\ldots ,x_n)$的集合，$R^n$加法操作可以表示如下：
+\[
+  (x_1,\ldots,x_n)+(y_1,\ldots,y_n)=(x_1+y_1,\ldots,x_n+y_n)
+\]
+我们同时定义操作如下：$R\times R^n\to R^n$如下：
+\[
+  \lambda\cdot(x_1,\ldots,x_n) = (\lambda x_1,\ldots,\lambda x_n)
+  \]
+  由向量空间引出的代数结构有一些有趣的性质。向量空间的定义如下：
+\begin{definition}
+  给定一个域$K$(配备了加法和乘法操作)。一个在K上的向量空间(K维向量空间)，是向量
+  的集合，集合上满足两个操作:向量加法\footnote{加法符号$+$在这里被复用，同时
+    表示域$K$上的加法和空间$E$上的向量加法。当+被使用时其功能可以从上下文得出}$(+:E\times E\to E)$和标量乘法$K\times E\to E$，满足
+
+  一下条件：任意$\alpha,\beta\in K,\,u,v\in E$
+
+  (V0) $E$是在加法操作下是一个阿贝尔群，有基本元0 \footnote{符号0在这里也被复用，
+    同时表示K上的的零(标量)和E上的基本元(零向量)。可能较少有疑惑，有时候偏向于使
+    用\textbf{0}表示零向量}
+
+  (V1) $\alpha \cdot (u+v)=(\alpha\cdot u)+(\alpha\cdot v)$
+
+  (V2) $(\alpha + \beta)\cdot u= (\alpha\cdot u)+(\beta\cdot u)$
+
+  (V3) $(\alpha*\beta)\cdot u=\alpha\cdot(\beta\cdot u)$
+
+  (V4) 1$\cdot u = u$
+
+  在(V3)中，*表示域$K$上的乘法操作。
+\end{definition}
+
+给定$\alpha \in  K , v\in E$，元素$\alpha \cdot v$时常表示为$\alpha v$。域$K$也常称为标量域
+
+在接下来的章节里，除非特别指定或者谈及别的不同的域，我们假定所有的K维向量空间是
+定义在域K上的空间。因此，当我们谈及向量空间时，我们指代的是K维向量空间。大部分情
+况下，K域指的是实数域
+
+在(V0)里，一个向量空间总是包含空向量0，所以这是一个非空集合。从(V1)，我们知道$\alpha
+\cdot 0 = 0,\;\alpha\cdot(-v)=-(\alpha\cdot v)$。从(V2)我们得到$0\cdot v = 0,\;(-\alpha)\cdot v=-(\alpha \cdot v)$
+
+从公理我们可以得到另外一个重要的结论：对任意$u \in E,\;\lambda \in K$如果$\lambda \neq 0,\;
+\lambda\cdot u = 0$，那么$u=0$
+
+事实上，因为$\lambda \neq 0$，那么存在乘法逆元$\lambda^{-1}$，从而根据$\lambda\cdot u = 0$，我们可以
+得到
+\[
+  \lambda^{-1}\cdot (\lambda\cdot u)= \lambda^{-1}\cdot0
+  \]
+  然而，我们知道$\lambda^{-1}\cdot0=0$，从(V3)和(V4),我们有
+  \[
+  \lambda^{-1}\cdot (\lambda\cdot u)= (\lambda^{-1}\cdot\lambda)\cdot u = 1\cdot u = u
+  \]
+  因此我们推出$u=0$
+
+\textbf{注意}:有人质疑公理(V4)是否真的有必要，他能否从其他公理推出？答案是不可以。
+例如：我们定义$E=R^n,\;R\times R^n\to R^n$
+\[
+  \lambda \cdot (x_1,\ldots ,x_n) = (0,\ldots,0)
+  \]
+  其中$x_1,\ldots ,x_n) \in R^n\quad,\lambda \in R$。公理(V0)-(V3)都满足，但公理4不成立。更一般
+  的例子可以通过使用现在还未介绍的基的概念。
+  

@@ -1,0 +1,267 @@
+\chapter{群，环，域}
+
+在随后的四个章节里,我们将回顾基本的代数结构（群，环，域，向量空间），向量空间是
+我们介绍的重点。一些基本的线性代数符号，诸如向量空间，子空间，线性组合，线性无关，基，
+商空间，线性映射，矩阵，基变换，内积，线性转化，对偶空间，超空间，线性映射的转化
+都将给予介绍。
+\section{群，子群，紧集}
+实数$R$有两个操作，$+ : R\times R\to R$(加法)和$*:R\times R\to R$(乘法)，满足以下性质:使得实数
+集$R$在加法操作下是一个阿贝尔群，去除0元素的$R-\{0\}=R^*$在乘法操作下是一个阿贝
+尔群。我们回顾群的定义:
+\begin{definition}
+  一个集合$G$是一个群，如果它满足二元操作：对任意两个元素$a,b\in G$都有相应的一个
+  元素$a\cdot b\in G$，其中操作是可结合的，且G有一个基本元$e$，$G$中每一个元素都可逆。显然，这意味着以下式子对任意
+  $a,b,c\in G$ 成立:
+
+  (G1) $a\cdot(b\cdot c) = (a\cdot b)\cdot c $ \hfill(结合律)
+
+  (G2) $a\cdot e=e\cdot a=a$ \hfill (基本元)
+
+  (G3) 对于任意$a\in G$，存在逆元$a^{-1}\in G$，因此$a\cdot a^{-1}=a^{-1}\cdot a=e$ \hfill (可逆
+  性）
+\end{definition}
+一个群如果是阿贝尔（或者说可交换）的：
+\[
+  a\cdot b = b\cdot a \quad \textrm{for all } a,b\in G.
+  \]
+一个集合如果有二元运算$M\times M\to M$并且有一个基本元e满足条件(G1)和(G2)，那么我们
+称之为幺半群。例如，自然数$N=\{0,1,\ldots,n,\ldots\}$，在加法操作下是一个幺半群。但是它并
+不是一个群。
+
+一些群的例子如下：
+\begin{example}
+  
+  1.整数集$Z = \{\ldots,-n,\ldots,-1,0,1,\ldots,n,\ldots\}$在加法操作下是一个阿贝尔群，有基本元0。
+  但不包含0的整数集$Z^*=Z-{0}$在乘法操作下并不是一个群。
+
+  2.有理数$Q(p/q,其中p,q \in Z, q\neq 0)$在加法操作下是一个阿贝尔群，有基本元0。不
+  含0元素的$Q^* = Q-{0}$在乘法操作下也是一个阿贝尔群，有基本元1.
+
+  3.给定任意非空集合 $S$，集合$S$上的双射操作集合$f:S\to S$(也称之为集合$S$的置换)，是在复合
+  函数操作下的一个群（例如，函数$f,g$的乘法复合是$g\cdot f$），有一个基本元,即元素自
+  身到自身映射。集合$S$如果有超过两个元素，那么S的置换操作集合不是一个阿贝尔群。
+  集合$S=\{1,\ldots ,n\}$上的置换群称为n个元素的对称群，表示为$\delta_n$。
+
+  4.对于任意正整数$p \in N$,定义一个在整数集$Z$上的关系，表示为$m \equiv n \pmod{p}$,如
+  下
+  \[
+    m \equiv n\pmod{p} \quad\textrm{iff}\quad m-n=kp\quad \textrm{for some } k \in Z
+  \]
+  读者很容易验证这是一个等价关系，它兼容于加法和乘法操作，这意味着如果$m_1 \equiv n_1
+  \pmod{p}$且$m_2 \equiv n_2$,那么$m_1+m_2=n_1+n_2 \pmod{p}, m_1m_2 \equiv n_1n_2 \pmod{p}$。
+  所以，我们可以定义等价类$\pmod(p)$的集合上的加法和乘法操作:$[m] + [n] = [m+n]\textrm{,}
+  [m]\cdot[n]= [mn]$
+
+  读者很容易验证剩余类$\pmod(p)$上的加法操作揭示一个阿贝尔群结构，其中有[0]作为
+  0元素。这个群表示为$Z/pZ$
+
+  5.$n\times n$的可逆实系数矩阵（或者复系数矩阵）集合，在矩阵乘法操作下是一个群，有单
+  位元矩阵$I_n$。也称之为一般线性群，表示为$GL(n,R)(GL(n,C))$
+  
+  6.$n\times n$且行列式$det(A)=1$的可逆实系数矩阵（或者复系数矩阵）的集合，在矩阵乘法操作下是一个群，有单
+  位元矩阵$I_n$。也称之为特殊线性群，表示为$SL(n,R)(SL(n,C))$
+
+  7.满足$QQ^T=Q^TQ=I_N,Q^{-1}=Q^T$的$n\times n$的实系数矩阵集合，在矩阵乘法操作下是一个群，有单
+  位元$I_n$。称之为正交群，表示为$O(n)$
+
+  8.满足$QQ^T=Q^TQ=I_N,det(Q)=1,Q^{-1}=Q^T$的$n\times n$的实系数矩阵集合，在矩阵乘法操作下是一个群，有单
+  位元$I_n$。称之为特殊正交群，表示为$SO(n)$
+
+\end{example}
+
+例子（5）-（8）中涉及的群除了$SO(2)$是一个阿贝尔群之外其他当$n\ge 2$时不是阿贝尔
+群($O(2)$不是阿贝尔的).
+
+我们习惯于将阿贝尔群$G$加法操作下，$a\in G$的逆元$a^{-1}$表示为$a^{-1}$
+
+群的基本元是唯一的。事实上，我们可以证明一个更一般的情况如下：
+\begin{proposition} %\label{thm:unique_element}
+  如果一个二元运算：$M\times M\to M $是可结合的并且如果$a' \in M $是一个左基本元$e''
+  \in M $是一个右基本元，这意味着：
+\[
+    e'\cdot a= a \quad \textrm{for all } a\in M \qquad (G2l)
+\]
+\[
+    a\cdot e''= a \quad \textrm{for all } a\in M \qquad(G2r)
+\]
+\[
+    那么 e'=e''
+\]
+\end{proposition}
+证明:令$a = e''$由（G2l）得到
+\[
+  e'\cdot e''=e''
+\]
+令$a = e'$由（G2r）得到
+\[
+  e'\cdot e''=e'
+\]
+因此得证
+\[
+  e'=e'\cdot e''=e'
+\]
+%\ref{thm:unique_element}
+定理表明幺半群的基本元是唯一的。因为每一个群同时也是幺半
+群，所以群的单位元也是唯一的。更进一步，群中的每一个元素都有一个唯一的逆元。这个
+结果可以从以下更一般的情况得出：
+\begin{proposition}
+  一个幺半群有基本元$e$，如果一些元素$a\in M$有左逆元$a' \in M$并且有右逆元$a'' \in
+  M$，这表示为
+\[
+  a'\cdot a = e \qquad (G3l)
+  \]
+\[
+  a\cdot a'' = e \qquad (G3r)
+  \]
+  那么$a'=a''$
+
+  \emph{证明}:基于（G3l）和$e$是基本元，我们有
+\[
+(a'\cdot a)\cdot a'' = e\cdot a'' = a''
+\]
+类似地，基于（G3r）和$e$是一个基本元，我们有
+\[
+a'\cdot(a \cdot a'') = \cdot a'\cdot e = a'
+\]
+然而，$M$是一个幺半群，操作是可结合的，所以我们有
+\[
+a'=a'(a\cdot a'')= (a'\cdot a) \cdot a'' = a''
+\]
+得证
+
+注意：公理（G2）和公理（G3）可以弱化为（G2r）和（G3r）（右基本元的存在性和元素的
+右逆元的存在性）。可以尝试证明一下从公理（G2r）和公理（G3r）推出（G2）和（G3）
+\end{proposition}
+
+\begin{definition}
+  如果群$G$有n个元素，我们称之为$n$阶群。如果群$G$是无限的，那么我们说群$G$有无
+  穷阶。群$G$的阶通常表示为$|G|$(如果群是有限的)
+\end{definition}
+给定一个群$G$，对其中任意两个子集 $R,S\in G$，我们令
+\[
+  RS = \{r\cdot s| r\in R, s \in S\}
+\]
+更一般地，对于任意$g\in G, R=\{g\}$，我们表示为
+\[
+  gS = \{g\cdot s| s \in S\}
+\]
+相似地，如果$S=\{g\}$，我们表示为
+\[
+  Rg = \{r\cdot g| g\in R\}
+\]
+从现在开始，我们省略乘法符号，用$g_1g_2$表示$g_1\cdot g_2$。
+\begin{definition}
+给定$G$群，对于任意$g\in G$,定义$L_g$为$g$的左平移：任意$a\in G, L_g(a) = ga$，同
+理定义$g$的右平移$R_g$：$R_g(a) = ag$，任意$a \in G$
+\end{definition}
+以下简单的定理经常被使用：
+\begin{proposition}
+  给定一个群G，其平移变换$L_g, R_g$是双射
+\end{proposition}
+\emph{证明}:我们只证明$L_g$,$R_g$的证明是类似的。
+如果$L_g(a)=L_g(b)$，那么$ga=gb$，我们同时左乘以$g^{-1}$，我们得到$a=b$，所以
+$L_g$是一个单射函数。对任意$b \in G$，我们有$L_g(g^{-1})=gg^{-1}b=b$，所以$L_g$是
+满射。因此$L_g$是一个双射。
+%%buizz 满射的证明不太明白。
+\begin{definition} %\label{thm:subgroup_definition}
+  给定一个群$G$，其子集$H$称之为$G$的子群，当且仅当：
+   
+(1) 群$G$的基本元也包含在$H$里（$e\in H$）
+
+(2) 任意$h_1, h_2 \in H$，我们有$h_1h_2 \in H$
+
+(3) 任意$h\in H$，我们有$h^{-1} \in H$
+\end{definition}
+以下定理的证明留作练习
+\begin{proposition}
+给定一个群$G$，子集$H \subseteq G$是$G$的子群，当且仅当$H$非空，并且任意$h_1,h_2 \in
+H,h_1h_2^{-1} \in H$
+\end{proposition}
+如果群$G$是有限的，那么下列的命题成立
+\begin{proposition}
+  给定一个有限群$G$，子集$H$称为$G$的子群，当且仅当
+
+  (1) $e\in H $
+
+  (2) $H$ 在乘法操作性是闭合的。
+
+\end{proposition}
+%\ref{thm:subgroup_definition}
+\emph{证明}: 我们只需要证明定义的条件3成立。对任意
+$a\in H$，因为其左平移$L_a$是双射，所以到$H$上的映射是单射。同时，$H$是一个有限集，
+所以映射是一个双射。因为$e\in H$，那么有唯一的$b\in H$满足$L_a(b)=ab=e$。如果
+$a^{-1}$是$a\in G$中的逆，那么我们有$L_a(a^{-1}) = aa^{-1}=e$，根据$L_a$的单射性，
+我们有$a^{-1}=b\in H$。
+
+\begin{example}
+
+  1.任意整数$n\in Z$，集合
+  \[
+    nZ=\{nk | k \in Z\}
+  \]
+  是群$Z$的一个子群。
+
+  2.矩阵集合$GL^+(n,R)=\{A\in GL(n,R)|det(A)>0\}$是群$GL(n,R)$的一个子群。
+
+  3.群$SL(n, R)$是群$GL(n,R)$的子群
+
+  4.群$O(n)$是群$GL(n,R)$的子群
+  
+  5.群$SO(n)$是群$O(n)$的子群，也是$SL(n, R)$的子群
+
+  6.不难证明每一个$2\times 2$的选择矩阵$R\in SO(2)$可以写为
+\[
+R=
+  \left( \begin{array}{cc}
+           \cos\theta & -\sin\theta \\
+           \sin\theta & \cos\theta \\
+         \end{array} \right), \quad 0 \leq \theta<2\pi
+\]
+其中$SO(2)$可以看作$SO(3)$的子群，即矩阵形式为
+\[
+R=
+  \left( \begin{array}{cc}
+           \cos\theta & -\sin\theta \\
+           \sin\theta & \cos\theta \\
+         \end{array} \right)
+\]
+视为
+\[
+Q=
+  \left( \begin{array}{ccc}
+           \cos\theta & -\sin\theta &0 \\
+           \sin\theta & \cos\theta  &0 \\
+           0     & 0      &1
+         \end{array} \right)
+\]
+
+ 7.上三角矩阵$\left(\begin{array}{cc}
+               a & b\\
+               0 & c
+\end{array}\right) a,b,c\in R, a,c\neq 0$
+是群$GL(2,R)$的一个子群
+
+ 8.含有四个矩阵$V=\left(\begin{array}{cc}
+               \pm & 0\\
+               0   & \pm
+\end{array}\right)$的集合是群$GL(2,R)$的一个子群，也称为克莱因四元群。
+\end{example}
+
+\begin{definition}
+  如果H是G的一个子群，g是G的任意元素，那么形如$gH$的集合称为$H$在$G$上的左陪集，
+  形如$Hg$的集合成为$H$在$G$上的右陪集(相似地，右陪集也一样)。H的左陪集可以推出等价关系$\sim$定义如下：对
+  任意$g_1,g_2\in G$
+  \[
+    g_1\sim g_2 \quad textrm{当且仅当} g_1H=g_2H 
+    \]
+    (类似地，$g_1\sim g_2 \quad textrm{当且仅当} Hg_1=Hg_2)$。显然，$\sim$是一个等价关系。
+\end{definition}
+    现在，我们介绍以下定理
+
+
+
+
+
+
+
+
